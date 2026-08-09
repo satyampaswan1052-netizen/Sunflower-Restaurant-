@@ -2010,3 +2010,27 @@ pointer-events: auto !important;
 position: relative !important;
 z-index: 10 !important;
 }
+
+/* LOGIN MODAL MUST STAY ABOVE WELCOME SCREEN */
+
+.login-modal {
+z-index: 100000 !important;
+}
+
+.login-modal.active {
+display: flex !important;
+opacity: 1 !important;
+visibility: visible !important;
+pointer-events: auto !important;
+}
+
+.login-box {
+position: relative !important;
+z-index: 100001 !important;
+pointer-events: auto !important;
+}
+
+.login-box input,
+.login-box button {
+pointer-events: auto !important;
+}
