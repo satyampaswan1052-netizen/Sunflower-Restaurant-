@@ -1295,3 +1295,8 @@ footer small {
     font-size: 30px;
   }
 }
+@media (max-width: 900px) {
+  .login-button {
+    display: block !important;
+  }
+}
