@@ -9,7 +9,6 @@ let cartTotal = 0;
 function addToCart() {
 
   cartCount++;
-
   cartTotal += 299;
 
   document.getElementById("cartCount").innerText = cartCount;
@@ -118,126 +117,205 @@ function checkout() {
   alert(
     "Checkout system will be connected in the next step."
   );
-      }
+}
+
+
+/* =========================
+   LOGIN OPEN
+========================= */
 
 function openLogin() {
 
-const welcomeScreen =
-document.getElementById("welcomeScreen");
+  const welcomeScreen =
+    document.getElementById("welcomeScreen");
 
-// Welcome screen ko temporarily hide rakho
-if (welcomeScreen) {
-welcomeScreen.classList.remove("active");
-welcomeScreen.classList.remove("leaving");
-}
+  if (welcomeScreen) {
 
-document.body.style.overflow = "";
+    welcomeScreen.classList.remove("active");
+    welcomeScreen.classList.remove("leaving");
 
-const loginModal =
-document.getElementById("loginModal");
+  }
 
-loginModal.classList.add("active");
+  document.body.style.overflow = "";
 
-}
+  const loginModal =
+    document.getElementById("loginModal");
 
-function closeLogin() {
-
-const loginModal =
-document.getElementById("loginModal");
-
-loginModal.classList.remove("active");
-
-}
-
-function sendOTP() {
-  const phone = document.getElementById("phoneNumber").value;
-
-  if (phone.length !== 10) {
-    alert("Please enter a valid 10-digit mobile number.");
+  if (!loginModal) {
     return;
   }
 
-  document.getElementById("phoneStep").style.display = "none";
-  document.getElementById("otpStep").style.display = "block";
+  loginModal.classList.add("active");
+
 }
+
+
+/* =========================
+   LOGIN CLOSE
+========================= */
+
+function closeLogin() {
+
+  const loginModal =
+    document.getElementById("loginModal");
+
+  if (!loginModal) {
+    return;
+  }
+
+  loginModal.classList.remove("active");
+
+}
+
+
+/* =========================
+   SEND OTP
+========================= */
+
+function sendOTP() {
+
+  const phoneInput =
+    document.getElementById("phoneNumber");
+
+  const phone =
+    phoneInput.value.trim();
+
+  if (!/^\d{10}$/.test(phone)) {
+
+    alert(
+      "Please enter a valid 10-digit mobile number."
+    );
+
+    return;
+  }
+
+  document.getElementById("phoneStep").style.display =
+    "none";
+
+  document.getElementById("otpStep").style.display =
+    "block";
+
+}
+
+
+/* =========================
+   VERIFY OTP
+========================= */
 
 function verifyOTP() {
 
-const otp =
-document.getElementById("otpCode").value.trim();
+  const otpInput =
+    document.getElementById("otpCode");
 
-if (!/^\d{6}$/.test(otp)) {
+  const otp =
+    otpInput.value.trim();
 
-alert("Please enter the 6-digit OTP.");
+  if (!/^\d{6}$/.test(otp)) {
 
-return;
+    alert(
+      "Please enter the 6-digit OTP."
+    );
+
+    return;
+  }
+
+  /*
+    Login successful
+  */
+
+  localStorage.setItem(
+    "sunflowerLoggedIn",
+    "true"
+  );
+
+  /*
+    Close login popup
+  */
+
+  closeLogin();
+
+  /*
+    Clear OTP
+  */
+
+  otpInput.value = "";
+
+  /*
+    Show premium welcome screen
+  */
+
+  setTimeout(() => {
+
+    const welcomeScreen =
+      document.getElementById("welcomeScreen");
+
+    if (!welcomeScreen) {
+      return;
+    }
+
+    welcomeScreen.classList.add("active");
+
+    document.body.style.overflow = "hidden";
+
+  }, 400);
 
 }
 
-// Save login state
-localStorage.setItem(
-"sunflowerLoggedIn",
-"true"
-);
-
-// Close login modal
-closeLogin();
-
-// Clear OTP field
-document.getElementById("otpCode").value = "";
-
-// Show premium welcome experience
-setTimeout(() => {
-
-const welcomeScreen =
-  document.getElementById("welcomeScreen");
-
-welcomeScreen.classList.add("active");
-
-document.body.style.overflow = "hidden";
-
-}, 450);
-}
 
 /* =========================
-ENTER SUNFLOWER
+   ENTER SUNFLOWER
 ========================= */
 
 function enterSunflower() {
 
-const welcomeScreen =
-document.getElementById("welcomeScreen");
+  const welcomeScreen =
+    document.getElementById("welcomeScreen");
 
-welcomeScreen.classList.add("leaving");
-
-setTimeout(() => {
-
-welcomeScreen.classList.remove("active");
-welcomeScreen.classList.remove("leaving");
-
-document.body.style.overflow = "";
-
-window.scrollTo({
-  top: 0,
-  behavior: "smooth"
-});
-
-}, 700);
-}
+  if (!welcomeScreen) {
+    return;
   }
 
-  localStorage.setItem("sunflowerLoggedIn", "true");
+  welcomeScreen.classList.add("leaving");
 
-  closeLogin();
+  setTimeout(() => {
 
-  alert("Welcome to Sunflower 🌻");
+    welcomeScreen.classList.remove("active");
+
+    welcomeScreen.classList.remove("leaving");
+
+    document.body.style.overflow = "";
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  }, 700);
+
 }
+
+
+/* =========================
+   BACK TO PHONE
+========================= */
 
 function backToPhone() {
-  document.getElementById("otpStep").style.display = "none";
-  document.getElementById("phoneStep").style.display = "block";
+
+  document.getElementById("otpStep").style.display =
+    "none";
+
+  document.getElementById("phoneStep").style.display =
+    "block";
+
 }
 
+
+/* =========================
+   CONTINUE AS GUEST
+========================= */
+
 function continueAsGuest() {
+
   closeLogin();
+
 }
