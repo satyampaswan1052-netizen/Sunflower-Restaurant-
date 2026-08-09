@@ -2034,3 +2034,42 @@ pointer-events: auto !important;
 .login-box button {
 pointer-events: auto !important;
 }
+
+/* =========================
+FINAL LOGIN + WELCOME FIX
+========================= */
+
+/* Welcome screen hidden ho to kisi click ko block nahi karegi */
+#welcomeScreen {
+z-index: 2500 !important;
+pointer-events: none !important;
+}
+
+#welcomeScreen.active {
+z-index: 2500 !important;
+pointer-events: auto !important;
+}
+
+/* Login hamesha welcome screen ke upar rahega */
+.login-modal {
+z-index: 5000 !important;
+pointer-events: none !important;
+}
+
+.login-modal.active {
+z-index: 5000 !important;
+pointer-events: auto !important;
+}
+
+.login-box {
+position: relative !important;
+z-index: 5001 !important;
+pointer-events: auto !important;
+}
+
+.login-box input,
+.login-box button {
+position: relative;
+z-index: 5002 !important;
+pointer-events: auto !important;
+}
