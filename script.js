@@ -148,7 +148,11 @@ function verifyOTP() {
     return;
   }
 
-  alert("Login system will be connected soon.");
+  localStorage.setItem("sunflowerLoggedIn", "true");
+
+  closeLogin();
+
+  alert("Welcome to Sunflower 🌻");
 }
 
 function backToPhone() {
