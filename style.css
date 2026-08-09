@@ -1283,7 +1283,7 @@ footer small {
 @media (max-width: 600px) {
 
   .login-button {
-    display: none;
+    display: block;
   }
 
   .login-box {
