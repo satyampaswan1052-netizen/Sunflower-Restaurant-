@@ -34,7 +34,9 @@
       🛍️ Cart
       <span id="cartCount">0</span>
     </button>
-
+<button class="login-button" onclick="openLogin()">
+  👤 Login
+</button>
     <button class="mobile-menu" onclick="toggleMenu()">☰</button>
 
   </header>
@@ -383,7 +385,73 @@
 
   </footer>
 
+<!-- LOGIN / OTP MODAL -->
 
+<div id="loginModal" class="login-modal">
+
+  <div class="login-box">
+
+    <button class="login-close" onclick="closeLogin()">✕</button>
+
+    <div class="login-flower">🌻</div>
+
+    <small>WELCOME TO SUNFLOWER</small>
+
+    <h2>Login simply.</h2>
+
+    <p>Enter your mobile number to continue.</p>
+
+    <div id="phoneStep">
+
+      <label>Mobile Number</label>
+
+      <div class="phone-input">
+        <span>+91</span>
+
+        <input
+          type="tel"
+          id="phoneNumber"
+          placeholder="Enter mobile number"
+          maxlength="10"
+          inputmode="numeric"
+        >
+      </div>
+
+      <button class="login-submit" onclick="sendOTP()">
+        Send OTP →
+      </button>
+
+      <button class="guest-button" onclick="continueAsGuest()">
+        Continue as Guest
+      </button>
+
+    </div>
+
+    <div id="otpStep" style="display:none;">
+
+      <label>Enter OTP</label>
+
+      <input
+        type="text"
+        id="otpCode"
+        placeholder="Enter 6-digit OTP"
+        maxlength="6"
+        inputmode="numeric"
+      >
+
+      <button class="login-submit" onclick="verifyOTP()">
+        Verify & Continue →
+      </button>
+
+      <button class="back-button" onclick="backToPhone()">
+        ← Change number
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
   <!-- CART PANEL -->
   <div id="cartPanel" class="cart-panel">
 
