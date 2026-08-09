@@ -33,10 +33,28 @@
     <button class="cart-button" onclick="openCart()">
       🛍️ Cart
       <span id="cartCount">0</span>
-    </button>
-<button class="login-button" onclick="openLogin()">
-  👤 Login
-</button>
+    <button
+class="login-button"
+onclick="
+document.getElementById('welcomeScreen')?.classList.remove('active');
+document.getElementById('welcomeScreen')?.classList.remove('leaving');
+
+const modal = document.getElementById('loginModal');
+
+modal.style.display = 'flex';
+modal.style.opacity = '1';
+modal.style.visibility = 'visible';
+modal.style.pointerEvents = 'auto';
+modal.style.zIndex = '999999';
+
+document.querySelector('.login-box').style.zIndex = '1000000';
+
+"
+
+«»
+
+👤 Login
+      </button>
     <button class="mobile-menu" onclick="toggleMenu()">☰</button>
 
   </header>
