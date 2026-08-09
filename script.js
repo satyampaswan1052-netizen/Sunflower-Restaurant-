@@ -141,11 +141,68 @@ function sendOTP() {
 }
 
 function verifyOTP() {
-  const otp = document.getElementById("otpCode").value;
 
-  if (otp.length !== 6) {
-    alert("Please enter the 6-digit OTP.");
-    return;
+const otp =
+document.getElementById("otpCode").value.trim();
+
+if (!/^\d{6}$/.test(otp)) {
+
+alert("Please enter the 6-digit OTP.");
+
+return;
+
+}
+
+// Save login state
+localStorage.setItem(
+"sunflowerLoggedIn",
+"true"
+);
+
+// Close login modal
+closeLogin();
+
+// Clear OTP field
+document.getElementById("otpCode").value = "";
+
+// Show premium welcome experience
+setTimeout(() => {
+
+const welcomeScreen =
+  document.getElementById("welcomeScreen");
+
+welcomeScreen.classList.add("active");
+
+document.body.style.overflow = "hidden";
+
+}, 450);
+}
+
+/* =========================
+ENTER SUNFLOWER
+========================= */
+
+function enterSunflower() {
+
+const welcomeScreen =
+document.getElementById("welcomeScreen");
+
+welcomeScreen.classList.add("leaving");
+
+setTimeout(() => {
+
+welcomeScreen.classList.remove("active");
+welcomeScreen.classList.remove("leaving");
+
+document.body.style.overflow = "";
+
+window.scrollTo({
+  top: 0,
+  behavior: "smooth"
+});
+
+}, 700);
+}
   }
 
   localStorage.setItem("sunflowerLoggedIn", "true");
