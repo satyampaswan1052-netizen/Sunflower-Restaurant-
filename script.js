@@ -121,11 +121,32 @@ function checkout() {
       }
 
 function openLogin() {
-  document.getElementById("loginModal").classList.add("active");
+
+const welcomeScreen =
+document.getElementById("welcomeScreen");
+
+// Welcome screen ko temporarily hide rakho
+if (welcomeScreen) {
+welcomeScreen.classList.remove("active");
+welcomeScreen.classList.remove("leaving");
+}
+
+document.body.style.overflow = "";
+
+const loginModal =
+document.getElementById("loginModal");
+
+loginModal.classList.add("active");
+
 }
 
 function closeLogin() {
-  document.getElementById("loginModal").classList.remove("active");
+
+const loginModal =
+document.getElementById("loginModal");
+
+loginModal.classList.remove("active");
+
 }
 
 function sendOTP() {
