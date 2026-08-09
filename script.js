@@ -119,3 +119,43 @@ function checkout() {
     "Checkout system will be connected in the next step."
   );
       }
+
+function openLogin() {
+  document.getElementById("loginModal").classList.add("active");
+}
+
+function closeLogin() {
+  document.getElementById("loginModal").classList.remove("active");
+}
+
+function sendOTP() {
+  const phone = document.getElementById("phoneNumber").value;
+
+  if (phone.length !== 10) {
+    alert("Please enter a valid 10-digit mobile number.");
+    return;
+  }
+
+  document.getElementById("phoneStep").style.display = "none";
+  document.getElementById("otpStep").style.display = "block";
+}
+
+function verifyOTP() {
+  const otp = document.getElementById("otpCode").value;
+
+  if (otp.length !== 6) {
+    alert("Please enter the 6-digit OTP.");
+    return;
+  }
+
+  alert("Login system will be connected soon.");
+}
+
+function backToPhone() {
+  document.getElementById("otpStep").style.display = "none";
+  document.getElementById("phoneStep").style.display = "block";
+}
+
+function continueAsGuest() {
+  closeLogin();
+}
